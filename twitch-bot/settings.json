@@ -1,0 +1,6 @@
+{
+  "bot_username": "your_bot_username_here",
+  "bot_token": "enter the token that you generate here",
+  "channels" : [ "enter the channel names for the bot to join", "you can have multiple!" ],
+  "command_char": "!"
+}

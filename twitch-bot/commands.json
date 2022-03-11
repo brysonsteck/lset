@@ -1,0 +1,10 @@
+[
+  {
+    "command": "commandhere",
+    "reply": "You ran !commandhere, so I sent this message. You can change the ! to whatever string you wish by editing the settings.json file"
+  },
+  {
+    "command": "cool",
+    "reply": "You ran a cool command!"
+  }
+]

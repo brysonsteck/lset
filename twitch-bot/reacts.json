@@ -1,0 +1,10 @@
+[
+  {
+    "trigger": "If someone says something in this word for word, the bot will reply with the following:",
+    "reply": "Hey! you said that thing that triggered me"
+  },
+  {
+    "trigger": "Just keep adding objects for as many things you want the bot to react to",
+    "reply": "And i will loop over and say the things!"
+  }
+]
