@@ -11,7 +11,7 @@ fs.readFile('./settings.json', 'utf8', (err, data) => {
 		// parse JSON string to JSON object
 		const settings = JSON.parse(data);
 	}
-}
+});
 
 fs.readFile('./reacts.json', 'utf8', (err, data) => {
   if (err) {
@@ -21,7 +21,7 @@ fs.readFile('./reacts.json', 'utf8', (err, data) => {
 		// parse JSON string to JSON object
 		const reacts = JSON.parse(data);
 	}
-}
+});
 
 fs.readFile('./commands.json', 'utf8', (err, data) => {
   if (err) {
@@ -31,7 +31,7 @@ fs.readFile('./commands.json', 'utf8', (err, data) => {
 		// parse JSON string to JSON object
 		const commands = JSON.parse(data);
 	}
-}
+});
 
 fs.readFile('./mod_commands.json', 'utf8', (err, data) => {
   if (err) {
@@ -41,7 +41,7 @@ fs.readFile('./mod_commands.json', 'utf8', (err, data) => {
 		// parse JSON string to JSON object
 		const mod_commands = JSON.parse(data);
 	}
-}
+});
 
 const opts = {
   identity: {
