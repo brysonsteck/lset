@@ -1,48 +1,16 @@
 const tmi = require('tmi.js');
 const fs = require('fs');
 
-var settings, reacts, commands, mod_commands;
 
 // read settings and reactions json files
-fs.readFileSync('./settings.json', 'utf8', (err, data) => {
-  if (err) {
-    console.log(`Error reading settings file from disk: ${err}`);
-    process.exit(1);
-	} else {
-		// parse JSON string to JSON object
-		settings = JSON.parse(data);
-	}
-});
-
-fs.readFileSync('./reacts.json', 'utf8', (err, data) => {
-  if (err) {
-    console.log(`Error reading reacts file from disk: ${err}`);
-    process.exit(1);
-	} else {
-		// parse JSON string to JSON object
-		reacts = JSON.parse(data);
-	}
-});
-
-fs.readFileSync('./commands.json', 'utf8', (err, data) => {
-  if (err) {
-    console.log(`Error reading commands file from disk: ${err}`);
-    process.exit(1);
-	} else {
-		// parse JSON string to JSON object
-		commands = JSON.parse(data);
-	}
-});
-
-fs.readFileSync('./mod_commands.json', 'utf8', (err, data) => {
-  if (err) {
-    console.log(`Error reading mod commands file from disk: ${err}`);
-    process.exit(1);
-	} else {
-		// parse JSON string to JSON object
-		mod_commands = JSON.parse(data);
-	}
-});
+try {
+  const settings = fs.readFileSync('./settings.json', 'utf8');
+  const reacts = fs.readFileSync('./reacts.json', 'utf8');
+  const commands = fs.readFileSync('./commands.json', 'utf8');
+  const mod_commands = fs.readFileSync('./mod_commands.json', 'utf8');
+} catch (err) {
+  console.error("An error occured trying to read the files for the Twitch bot: " + err);
+}
 
 const opts = {
   identity: {
