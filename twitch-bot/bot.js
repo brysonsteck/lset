@@ -1,5 +1,4 @@
 const tmi = require('tmi.js');
-const timed = require('./timedMessages.js');
 const fs = require('fs');
 
 // read settings and reactions json files
