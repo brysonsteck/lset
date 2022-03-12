@@ -24,22 +24,22 @@ python3
 pip3
 ```
 
-You can install these with the following commands in these distros. You will most likely need to run `sudo` before any of these commands.
+You can install these with the following commands in these distros:
 ### Ubuntu/Debian
 ```bash
-# apt install git npm nodejs python3 python3-pip
+$ sudo apt install git npm nodejs python3 python3-pip
 ```
 ### Fedora/CentOS/Other RHEL
 ```bash
-# yum install git npm nodejs python3 python3-pip
+$ sudo yum install git npm nodejs python3 python3-pip
 ```
 ### Arch/Manjaro
 ```bash
-# pacman -S git npm nodejs python3 python-pip
+$ sudo pacman -S git npm nodejs python3 python-pip
 ```
 ### openSUSE
 ```bash
-# zypper install git npm16 nodejs16 python3 python3-pip
+$ sudo zypper install git npm16 nodejs16 python3 python3-pip
 ```
 ### Other Distros/BSD
 If you fit this description, you probably know what you're doing.
