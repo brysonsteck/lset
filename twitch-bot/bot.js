@@ -1,13 +1,12 @@
 const tmi = require('tmi.js');
 const fs = require('fs');
 
-
 // read settings and reactions json files
 try {
-  const settings = fs.readFileSync('./settings.json', 'utf8');
-  const reacts = fs.readFileSync('./reacts.json', 'utf8');
-  const commands = fs.readFileSync('./commands.json', 'utf8');
-  const mod_commands = fs.readFileSync('./mod_commands.json', 'utf8');
+  const settings = JSON.parse(fs.readFileSync('./settings.json', 'utf8'));
+  const reacts = JSON.parse(fs.readFileSync('./reacts.json', 'utf8'));
+  const commands = JSON.parse(fs.readFileSync('./commands.json', 'utf8'));
+  const mod_commands = JSON.parse(fs.readFileSync('./mod_commands.json', 'utf8'));
 } catch (err) {
   console.error("An error occured trying to read the files for the Twitch bot: " + err);
 }
