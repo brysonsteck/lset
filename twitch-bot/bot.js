@@ -4,7 +4,7 @@ const fs = require('fs');
 var settings, reacts, commands, mod_commands;
 
 // read settings and reactions json files
-fs.readFile('./settings.json', 'utf8', (err, data) => {
+fs.readFileSync('./settings.json', 'utf8', (err, data) => {
   if (err) {
     console.log(`Error reading settings file from disk: ${err}`);
     process.exit(1);
@@ -14,7 +14,7 @@ fs.readFile('./settings.json', 'utf8', (err, data) => {
 	}
 });
 
-fs.readFile('./reacts.json', 'utf8', (err, data) => {
+fs.readFileSync('./reacts.json', 'utf8', (err, data) => {
   if (err) {
     console.log(`Error reading reacts file from disk: ${err}`);
     process.exit(1);
@@ -24,7 +24,7 @@ fs.readFile('./reacts.json', 'utf8', (err, data) => {
 	}
 });
 
-fs.readFile('./commands.json', 'utf8', (err, data) => {
+fs.readFileSync('./commands.json', 'utf8', (err, data) => {
   if (err) {
     console.log(`Error reading commands file from disk: ${err}`);
     process.exit(1);
@@ -34,7 +34,7 @@ fs.readFile('./commands.json', 'utf8', (err, data) => {
 	}
 });
 
-fs.readFile('./mod_commands.json', 'utf8', (err, data) => {
+fs.readFileSync('./mod_commands.json', 'utf8', (err, data) => {
   if (err) {
     console.log(`Error reading mod commands file from disk: ${err}`);
     process.exit(1);
