@@ -114,7 +114,7 @@ function commands (target, commandName, user, mods) {
       if (message.search(command.command) !== -1) {
         client.say(target, `${command.reply}`);
         valid = true;
-        break;
+        return true;
       }
     });
   }
@@ -141,10 +141,11 @@ function modCommands(target, commandName, isMod) {
     if (message.search(command.command) !== -1) {
       if (!isMod) {
         client.say(target, `Only moderators can run this command...`);
+        return true;
       } else {
         client.say(target, `${command.reply}`);
         valid = true;
-        break;
+        return true;
       }
     }
   });
