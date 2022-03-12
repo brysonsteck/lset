@@ -6,7 +6,7 @@ This repo contains a new and ongoing project. Currently, this repo works and ins
 
 Ever wanted to stream on Linux and *really* don't want to mess with any yucky online services to make your stream worthwhile? Well now you can, using your own self hosted tools!
 
-Here you can find two separate programs: a Node.JS Twitch bot and a Python script for a follower/sub goal. In order to set it up, read the [installing](#installing) section of this README, or you can view the documents for both the [Twitch bot]() and the [Python script]() to set them up separately.
+Here you can find two separate programs: a Node.JS Twitch bot and a Python script for a follower/sub goal. Both of these scripts stem off the scripts I made for my streams, just heavily altered so they can be configured using JSON files. In order to set it up, read the [installing](#installing) section of this README, or you can view the documents for both the [Twitch bot]() and the [Python script]() to set them up separately.
 
 ## Installing
 
