@@ -2,4 +2,45 @@
 
 Ever wanted to stream on Linux and *really* don't want to mess with any yucky online services to make your stream worthwhile? Well now you can, using your own self hosted tools!
 
-Here you can find two separate programs: a Node.JS Twitch bot and a Python script for a follower/sub goal. In order to set it up, you can run the `install.sh` script to set up both the programs, or you can view the documents for both the [Twitch bot]() and the [Python script]() to set them up separately.
+Here you can find two separate programs: a Node.JS Twitch bot and a Python script for a follower/sub goal. In order to set it up, read the [installing](#installing) section of this README, or you can view the documents for both the [Twitch bot]() and the [Python script]() to set them up separately.
+
+## Installing
+
+Two things are assumed with these tools:
+1. Basic understanding of navigating a Unix shell
+1. Basic understanding of JSON and editing JSON files
+
+You have three options to install these tools:
+1. Run the `install.sh` file to install the dependencies, and take the automated setup process where you are guided to each file that you need to configure to set up the scripts properly.
+1. Run the `install.sh` file to install the dependencies, and exit the automated setup to configure the corresponding scripts' JSON files yourself.
+1. Figure it out yourself if you know what you're doing.
+
+Before you continue, make sure you have the following tools installed:
+```
+git
+npm
+node
+python3
+pip3
+```
+
+You can install these with the following commands in these distros. You will most likely need to run `sudo` before any of these commands.
+### Ubuntu/Debian
+```bash
+# apt install git npm nodejs python3 python3-pip
+```
+### Fedora/CentOS/Other RHEL
+```bash
+# yum install git npm nodejs python3 python3-pip
+```
+### Arch/Manjaro
+```bash
+# pacman -S git npm nodejs python3 python-pip
+```
+### openSUSE
+```bash
+# zypper install git npm16 nodejs16 python3 python3-pip
+```
+### Other Distros/BSD
+If you fit this description, you probably know what you're doing.
+
