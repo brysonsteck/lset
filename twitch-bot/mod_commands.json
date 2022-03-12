@@ -1,0 +1,6 @@
+[
+  {
+    "command": "modcommand",
+    "reply": "This is a command only a mod can run!"
+  }
+]
