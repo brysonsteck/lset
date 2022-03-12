@@ -1,7 +1,7 @@
 {
   "follower_goal": "500,000",
   "sub_goal": "1,000",
-  "write_file": "/path/to/file/you/want/to/write",
+  "write_file": "source_output.txt",
   "username": "your_channel_name_goes_here",
   "seconds_interval": 10
 }
