@@ -20,6 +20,7 @@ echo
 echo "install: installing tmi node module for the twitch bot"
 cd twitch-bot
 npm install tmi.js
+cd ..
 
 clear
 echo "Done installing!"
