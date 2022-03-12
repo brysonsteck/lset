@@ -1,6 +1,7 @@
 import requests
 import time
 import json
+import os
 
 with open('settings.json') as f:
   settings = json.load(f)
@@ -11,7 +12,7 @@ WRITE_FILE = settings['write_file']
 USER = settings['username']
 UPDATE = settings['seconds_interval']
 
-print("Running!")
+print("* Follower/sub goal is now running. To add to your stream, add a text source and open the file " + os.path.abspath(WRITE_FILE) + " to display on your stream.")
 while(True):
     followers = open(WRITE_FILE, 'w')
     url_follows = "https://api.crunchprank.net/twitch/followcount/" + USER
@@ -23,3 +24,4 @@ while(True):
     print(f"Subs: {read_subs.text}/{SUB_GOAL}\nFollower goal: {read_follows.text}/{FOLLOWER_GOAL}\n", end='', file=followers)
     followers.close()
     time.sleep(UPDATE)
+

@@ -5,7 +5,7 @@ const fs = require('fs');
 try {
   var settings = JSON.parse(fs.readFileSync('./settings.json', 'utf8'));
   var reacts = JSON.parse(fs.readFileSync('./reacts.json', 'utf8'));
-  var commands = JSON.parse(fs.readFileSync('./commands.json', 'utf8'));
+  var chat_commands = JSON.parse(fs.readFileSync('./commands.json', 'utf8'));
   var mod_commands = JSON.parse(fs.readFileSync('./mod_commands.json', 'utf8'));
 } catch (err) {
   console.error("An error occured trying to read the files for the Twitch bot: " + err);
@@ -23,7 +23,7 @@ var modString = "";
 var mods;
 
 try {
-  modString = fs.readFileSync('', 'utf8');
+  modString = fs.readFileSync('mods.txt', 'utf8');
   modString = modString.replace(/(\r\n|\n|\r)/gm, "");
   mods = modString.split(",");
 } catch (err) {
@@ -31,21 +31,6 @@ try {
 }
 
 var modCommand = false;
-
-// Twitch bot initialization
-const client = new tmi.client(opts);
-
-// Register our event handlers (defined below)
-client.on('message', onMessageHandler);
-client.on('connected', onConnectedHandler);
-
-// Connect to Twitch:
-client.connect();
-
-// Notify when connected
-function onConnectedHandler (addr, port) {
-  console.log(`* Main Bot successfully connected to ${addr}:${port}`);
-}
 
 function onMessageHandler (target, context, msg, self) {
   if (self) { return; } // Ignore messages from the bot
@@ -70,16 +55,17 @@ function commands (target, commandName, user, mods) {
   if (commandName === "help") {
     var allCommands = [];
     var finalString = "";
-    commands.forEach(command => {
+    chat_commands.forEach(command => {
       allCommands.push(command.command);
     });
     allCommands.forEach(command => {
-      finalString = finalString + command.command;
+      finalString = finalString + settings.command_char + command.command + " ";
     });
     client.say(target, `Here is the list of commands: ${finalString}`);
+    valid = true;
   } else {
-    commands.forEach(command => {
-      if (message.search(command.command) !== -1) {
+    chat_commands.forEach(command => {
+      if (commandName.search(command.command) !== -1) {
         client.say(target, `${command.reply}`);
         valid = true;
         return true;
@@ -126,6 +112,21 @@ function reactions (target, message, user) {
       client.say(target, `${react.reply}`);
     }
   });
+}
+
+// Twitch bot initialization
+const client = new tmi.client(opts);
+
+// Register our event handlers (defined below)
+client.on('message', onMessageHandler);
+client.on('connected', onConnectedHandler);
+
+// Connect to Twitch:
+client.connect();
+
+// Notify when connected
+function onConnectedHandler (addr, port) {
+  console.log(`* Main Bot successfully connected to ${addr}:${port}`);
 }
 
 
