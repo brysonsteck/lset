@@ -53,15 +53,14 @@ function commands (target, commandName, user, mods) {
   if (mods.indexOf(user) >= 0) isMod = true;
   
   if (commandName === "help") {
-    var allCommands = [];
-    var finalString = "";
+    var finalString = settings.command_char + "help " + settings.command_char + "about ";
     chat_commands.forEach(command => {
-      allCommands.push(command.command);
-    });
-    allCommands.forEach(command => {
       finalString = finalString + settings.command_char + command.command + " ";
     });
     client.say(target, `Here is the list of commands: ${finalString}`);
+    valid = true;
+  } else if (commandName === "about") {
+    client.say(target, `This bot was stolen from https://github.com/brysonsteck/lset under the MIT License and configured by your streamer, ${settings.your_username}!`);
     valid = true;
   } else {
     chat_commands.forEach(command => {
