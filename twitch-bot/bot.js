@@ -1,6 +1,8 @@
 const tmi = require('tmi.js');
 const fs = require('fs');
 
+var settings, reacts, commands, mod_commands;
+
 // read settings and reactions json files
 fs.readFile('./settings.json', 'utf8', (err, data) => {
   if (err) {
@@ -8,7 +10,7 @@ fs.readFile('./settings.json', 'utf8', (err, data) => {
     process.exit(1);
 	} else {
 		// parse JSON string to JSON object
-		const settings = JSON.parse(data);
+		settings = JSON.parse(data);
 	}
 });
 
@@ -18,7 +20,7 @@ fs.readFile('./reacts.json', 'utf8', (err, data) => {
     process.exit(1);
 	} else {
 		// parse JSON string to JSON object
-		const reacts = JSON.parse(data);
+		reacts = JSON.parse(data);
 	}
 });
 
@@ -28,7 +30,7 @@ fs.readFile('./commands.json', 'utf8', (err, data) => {
     process.exit(1);
 	} else {
 		// parse JSON string to JSON object
-		const commands = JSON.parse(data);
+		commands = JSON.parse(data);
 	}
 });
 
@@ -38,7 +40,7 @@ fs.readFile('./mod_commands.json', 'utf8', (err, data) => {
     process.exit(1);
 	} else {
 		// parse JSON string to JSON object
-		const mod_commands = JSON.parse(data);
+		mod_commands = JSON.parse(data);
 	}
 });
 
