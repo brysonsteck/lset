@@ -31,6 +31,7 @@ $ sudo apt install git npm nodejs python3 python3-pip
 ```
 ### Fedora/CentOS/Other RHEL
 ```bash
+# if 'yum' is not found, you should try 'dnf'
 $ sudo yum install git npm nodejs python3 python3-pip
 ```
 ### Arch/Manjaro
