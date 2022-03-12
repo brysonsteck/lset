@@ -1,3 +1,7 @@
+# :warning: Hey you! :warning:
+
+This repo contains a new and ongoing project. Currently, this repo works and installs correctly on the 3 systems I tested this on, but there are more features and polishing to be done. With that being said, enjoy!
+
 # `lset`: The **L**inux **S**treamer's **E**ssential **T**oolkit
 
 Ever wanted to stream on Linux and *really* don't want to mess with any yucky online services to make your stream worthwhile? Well now you can, using your own self hosted tools!
