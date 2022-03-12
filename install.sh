@@ -85,7 +85,7 @@ $INSTALL_EDITOR follow-src/settings.json
 
 echo "Cool! That's everything you need to get the Python bot working. Feel free to edit that file later."
 echo "Now let's move on to the Twitch bot. There are more files we must edit in here."
-echo "The first file to edit is the settings.json file for the Twitch bot. You will need to add the name of the bot's Twitch username, it's oauth code, and the names of the channels you want the bot to be present in."
+echo "The first file to edit is the settings.json file for the Twitch bot. You will need to add the name of the bot's Twitch username, it's oauth code, YOUR OWN username, and the names of the channels you want the bot to be present in."
 echo "You can optionally change the command character. Press ENTER to open the file."
 read
 
