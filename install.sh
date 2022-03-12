@@ -15,6 +15,9 @@ fi
 
 echo "install: installing requests python package for the source script"
 pip3 install --user requests
+cd follow-src
+touch source_output.txt
+cd ..
 
 echo
 echo "install: installing tmi node module for the twitch bot"
