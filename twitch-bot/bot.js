@@ -170,10 +170,11 @@ function createCommand(target) {
   var command_reply = "";
   for (int i = 2; i < fullMessage.length; i++) {
     command_reply = command_reply + fullMessage[i] + " ";
+  }
   chat_commands.push(['command': fullMessage[1], 'reply': command_reply]);
   try {
     const data = JSON.stringify(chat_commands, null, 4);
-    fs.writeFileSync('user.json', data);
+    fs.writeFileSync('commands.json', data);
     console.log('* Added command ' + settings.command_char + fullMessage[1]);
     client.say(target, `Successfully added command: ${settings.command_char}${fullMessage[1]}`);
   } catch (err) {
@@ -183,7 +184,26 @@ function createCommand(target) {
 }
 
 function editCommand(target) {
-
+  chat_commands.forEach(command => {
+    if (fullMessage[1].search(command.command) !== -1) {
+      var command_reply = "";
+      for (int i = 2; i < fullMessage.length; i++) {
+        command_reply = command_reply + fullMessage[i] + " ";
+      }
+      chat_commands[fullMessage[1]] = command_reply;
+      try {
+        const data = JSON.stringify(chat_commands, null, 4);
+        fs.writeFileSync('commands.json', data);
+        console.log('* Edited command ' + settings.command_char + fullMessage[1]);
+        client.say(target, `Successfully edited existing command: ${settings.command_char}${fullMessage[1]}`);
+      } catch (err) {
+        console.error('An error occured trying to run !editcommand: ' + err);
+        client.say(target, `Something went wrong editing this command, please try again later.`);
+      }
+      return true;
+    }
+  });
+  return false;
 }
 
 function reactions (target, message, user) {
