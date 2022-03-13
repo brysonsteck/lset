@@ -46,13 +46,19 @@ const opts = {
   channels: settings.channels
 };
 
+const linkProtection = settings.link_protection;
+const bannedUrlEndings = settings.banned_endings;
 var modString = "";
 var mods;
 
 try {
   modString = fs.readFileSync('mods.txt', 'utf8');
+  trustedString = fs.readFileSync('trusted_users.txt', 'utf8');
   modString = modString.replace(/(\r\n|\n|\r)/gm, "");
+  trustedString = trustedString.replace(/(\r\n|\n|\r)/gm, "");
+  console.log('* Loaded mods and trusted users from file.');
   mods = modString.split(",");
+  trustedUsers = trustedString.split(",");
 } catch (err) {
   console.error(err)
 }
@@ -64,12 +70,25 @@ function onMessageHandler (target, context, msg, self) {
   const user = context.username;
   msg = msg.toLowerCase();
   var message = msg.trim();
+  
+  // link protection stuff, only enables when true in settings.json
+	var findUrlEndings = false;
+	if (linkProtection) {
+  	for (var i=urlEndings.length; i--;) {
+    	if (message.includes(urlEndings[i])) findUrlEndings = true;
+    	else if (message.includes(urlEndings[i].replace('.', '*'))) findUrlEndings = true;
+  	}
+	}
 
   if (message.charAt(0) === settings.command_char) {
     message = message.substr(1);
     valid = commands(target, message, user, mods);
   } else {
-    reactions(target, message, user);
+    if (linkProtection && findUrlEndings)
+      if (!linkProtect())
+        reactions(target, message, user);
+    else 
+      reactions(target, message, user);
   }
 }
 
@@ -138,6 +157,30 @@ function reactions (target, message, user) {
       client.say(target, `${react.reply}`);
     }
   });
+}
+
+function linkProtect() {
+  if (trustedUsers.indexOf(user) === -1) {
+    if (message.search("http") !== -1 || message.search("www.") !== -1 || findUrlEndings) {
+      urlAttempt = message;
+      urlAttemptUser = user;
+      console.log(`! ${user} tried to post a URL. Warned and timedout for 10 seconds. Message: "${urlAttempt}"`);
+      client.say(target, `/timeout ${user} 10 Links from untrusted users are deleted as a protection against chat bots.`);
+      client.say(target, `@${user} Your link was deleted because you haven't been in my chat before. If you have a legitimate link and aren't a bot, let me know!`);
+      // is a bot, don't go farther
+			return true;
+    } else {
+      trustedString = trustedString + `,${user}`;
+      trustedString = trustedString.replace(/(\r\n|\n|\r)/gm, "");
+      trustedUsers.push(user);
+      fs.writeFile('/home/bryson/git/bryzinga-bot/trusted-users', `${trustedString}`, function (err) {
+        if (err) return console.log(err);
+        console.log(`* ${user} is now a trusted chatter.`);
+      });
+      // not a bot, move on to reactions
+			return false;
+    }
+  }
 }
 
 // Twitch bot initialization

@@ -48,6 +48,7 @@ cd ..
 echo
 echo "install: installing tmi node module for the twitch bot"
 cd twitch-bot
+touch mods.txt trusted_users.txt
 npm install tmi.js
 cd ..
 
