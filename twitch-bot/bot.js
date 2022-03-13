@@ -64,12 +64,15 @@ try {
 }
 
 var modCommand = false;
+var message, fullMessage;
 
 function onMessageHandler (target, context, msg, self) {
   if (self) { return; } // Ignore messages from the bot
   const user = context.username;
+  // save full message if adding/editing command
+  fullMessage = msg.trim();
   msg = msg.toLowerCase();
-  var message = msg.trim();
+  message = msg.trim();
   
   // link protection stuff, only enables when true in settings.json
 	var findUrlEndings = false;
@@ -134,14 +137,20 @@ function commands (target, commandName, user, mods) {
   }
 }
 
-function modCommands(target, commandName, isMod) {
+function modCommands(target, commandName, message, isMod) {
   var valid = false;
-  mod_commands.forEach(command => {
-    if (message.search(command.command) !== -1) {
+  test_mod_commands = ["addcommand", "editcommand"];
+  test_mod_commands.forEach(command => {
+    if (commandName.search(command) !== -1) {
       if (!isMod) {
         client.say(target, `Only moderators can run this command...`);
         return true;
       } else {
+        if (command === "addcommand") {
+          createCommand(target);
+        } else if (command === "editcommand") {
+          editCommand(target);
+        }
         client.say(target, `${command.reply}`);
         valid = true;
         return true;
@@ -149,6 +158,32 @@ function modCommands(target, commandName, isMod) {
     }
   });
   return valid;
+}
+
+function createCommand(target) {
+  chat_commands.forEach(command => {
+    if (fullMessage[1].search(command.command) !== -1) {
+      client.say(target, `The command ${settings.command_char}${fullMessage[1]} already exists. Use !editcommand to change it's contents.`);
+      return false;
+    }
+  });
+  var command_reply = "";
+  for (int i = 2; i < fullMessage.length; i++) {
+    command_reply = command_reply + fullMessage[i] + " ";
+  chat_commands.push(['command': fullMessage[1], 'reply': command_reply]);
+  try {
+    const data = JSON.stringify(chat_commands, null, 4);
+    fs.writeFileSync('user.json', data);
+    console.log('* Added command ' + settings.command_char + fullMessage[1]);
+    client.say(target, `Successfully added command: ${settings.command_char}${fullMessage[1]}`);
+  } catch (err) {
+    console.error('An error occured trying to run !addcommand: ' + err);
+    client.say(target, `Something went wrong adding this command, please try again later.`);
+  }
+}
+
+function editCommand(target) {
+
 }
 
 function reactions (target, message, user) {
@@ -173,7 +208,7 @@ function linkProtect() {
       trustedString = trustedString + `,${user}`;
       trustedString = trustedString.replace(/(\r\n|\n|\r)/gm, "");
       trustedUsers.push(user);
-      fs.writeFile('/home/bryson/git/bryzinga-bot/trusted-users', `${trustedString}`, function (err) {
+      fs.writeFile('trusted_users.txt', `${trustedString}`, function (err) {
         if (err) return console.log(err);
         console.log(`* ${user} is now a trusted chatter.`);
       });
