@@ -9,8 +9,8 @@ If you have the tools installed, `git` will display a help message. If you don't
 You will also need to install Node.js and npm, both of which can be installed through one package found on the downloads section of the [Node.js Website](https://nodejs.org/en/download/). 
 
 Once you have both items installed, you will be able to run the same files (`install.sh` and `run.sh`) as you would on Linux:
-```
+```bash
 # note: if you use './install.sh' or './run.sh', the read command may not work properly
-$ sh install.sh
-$ sh run.sh
+% sh install.sh
+% sh run.sh
 ```

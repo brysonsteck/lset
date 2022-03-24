@@ -28,6 +28,10 @@ python3
 pip3
 ```
 
+The following instructions are for Linux (and possibly other \*NIX systems). You can view the installation instructions for macOS and Windows here:
+* [macOS](doc/MACOS.md)
+* [Windows]() (COMING SOON)
+
 You can install these with the following commands in these distros:
 ### Ubuntu/Debian
 ```bash
